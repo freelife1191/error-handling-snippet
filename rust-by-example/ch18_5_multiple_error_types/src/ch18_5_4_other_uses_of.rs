@@ -21,7 +21,7 @@
 use std::error;
 use std::fmt;
 
-// Change the alias to use `Box<dyn error::Error>`.
+// `Box<dyn error::Error>`를 사용하도록 별칭을 변경합니다.
 type Result<T> = std::result::Result<T, Box<dyn error::Error>>;
 
 #[derive(Debug)]
@@ -35,8 +35,8 @@ impl fmt::Display for EmptyVec {
 
 impl error::Error for EmptyVec {}
 
-// The same structure as before but rather than chain all `Results`
-// and `Options` along, we `?` to get the inner value out immediately.
+// 이전과 동일한 구조이지만 모든 `Results`를 연결하는 대신
+// 그리고 `Options`에 따라 `?`를 사용하여 내부 값을 즉시 가져옵니다.
 fn double_first(vec: Vec<&str>) -> Result<i32> {
     let first = vec.first().ok_or(EmptyVec)?;
     let parsed = first.parse::<i32>()?;

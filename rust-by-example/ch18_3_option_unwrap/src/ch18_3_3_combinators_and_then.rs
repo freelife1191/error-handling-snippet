@@ -13,7 +13,7 @@
 #[derive(Debug)] enum Food { CordonBleu, Steak, Sushi }
 #[derive(Debug)] enum Day { Monday, Tuesday, Wednesday }
 
-// 스시를 만들 재료가 없습니다.
+// `Sushi`를 만들 재료가 없습니다.
 fn have_ingredients(food: Food) -> Option<Food> {
     match food {
         Food::Sushi => None,
@@ -21,7 +21,7 @@ fn have_ingredients(food: Food) -> Option<Food> {
     }
 }
 
-// 꼬르동 블루를 제외한 모든 요리의 레시피가 있습니다.
+// `CordonBleu`를 제외한 모든 요리의 레시피가 있습니다.
 fn have_recipe(food: Food) -> Option<Food> {
     match food {
         Food::CordonBleu => None,
@@ -30,7 +30,7 @@ fn have_recipe(food: Food) -> Option<Food> {
 }
 
 // 요리를 만들려면 레시피와 재료가 모두 필요합니다.
-// `일치' 체인으로 논리를 표현할 수 있습니다.
+// `match' chain 으로 논리를 표현할 수 있습니다.
 fn cookable_v1(food: Food) -> Option<Food> {
     match have_recipe(food) {
         None       => None,

@@ -1,11 +1,6 @@
-/// Wrapping errors
-///
-/// 박싱 오류에 대한 대안은 오류를 자신만의 오류 유형으로 래핑하는 것입니다.
-
-use std::error;
+use std::{error, fmt};
 use std::error::Error;
 use std::num::ParseIntError;
-use std::fmt;
 
 type Result<T> = std::result::Result<T, DoubleError>;
 
@@ -42,19 +37,23 @@ impl error::Error for DoubleError {
     }
 }
 
-// `ParseIntError`에서 `DoubleError`로의 변환을 구현합니다.
-// `ParseIntError`가 발생한 경우 `?`에 의해 자동으로 호출됩니다.
-// `DoubleError`로 변환되어야 합니다.
+// ParseIntError 가 발생하면 DoubleError로 변환되도록 처리
+// 구현하지 않으면 DoubleError 가 ParseIntError 타입의 에러를 처리할 수 없어서 에러가 발생함
+// 추가적인 에러 처리를 위해서는 모든 타입의 에러 구현체를 구현 해주어야 함
 impl From<ParseIntError> for DoubleError {
     fn from(err: ParseIntError) -> DoubleError {
+        println!("ParseIntError Convert: {:?}", err);
         DoubleError::Parse(err)
     }
 }
 
+
+// DoubleError Result를 반환하므로 ParseIntError 가 발생하면 DoubleError로 자동으로 변환됨
 fn double_first(vec: Vec<&str>) -> Result<i32> {
     let first = vec.first().ok_or(DoubleError::EmptyVec)?;
     // 여기서는 `DoubleError`를 생성하기 위해 위에서 정의한 `From`의 `ParseIntError` 구현을 암시적으로 사용합니다.
     let parsed = first.parse::<i32>()?;
+    // let parsed = first.parse::<i32>().map_or_else(|e| Err(DoubleError::Parse(e)), Ok)?;
 
     Ok(2 * parsed)
 }
@@ -64,6 +63,8 @@ fn print(result: Result<i32>) {
         Ok(n)  => println!("The first doubled is {}", n),
         Err(e) => {
             println!("Error: {}", e);
+            // 위에서 Error를 오버라이딩 하여 구현한 source() 메소드를 통해서 원인이 출력 가능함
+            // Error 내부에 source 메소드가 포함되어 있음
             if let Some(source) = e.source() {
                 println!("  Caused by: {}", source);
             }
@@ -71,20 +72,13 @@ fn print(result: Result<i32>) {
     }
 }
 
-/// 이는 오류 처리를 위한 상용구를 조금 더 추가하며 일부 애플리케이션에서는 필요하지 않을 수도 있습니다.
-/// 상용구를 처리해 줄 수 있는 라이브러리가 있습니다.
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[test]
+fn test_double_first() {
+    let numbers = vec!["42", "93", "18"];
+    let empty = vec![];
+    let strings = vec!["tofu", "93", "18"];
 
-    #[test]
-    fn test_double_first() {
-        let numbers = vec!["42", "93", "18"];
-        let empty = vec![];
-        let strings = vec!["tofu", "93", "18"];
-
-        print(double_first(numbers));
-        print(double_first(empty));
-        print(double_first(strings));
-    }
+    print(double_first(numbers));
+    print(double_first(empty));
+    print(double_first(strings.clone()));
 }
