@@ -40,7 +40,10 @@ fn test_double_first() {
     let empty = vec![];
     let strings = vec!["tofu", "93", "18"];
 
+    // The first doubled is 84
     print(double_first(numbers));
+    // Error: invalid first item to double ""
     print(double_first(empty));
+    // Error: invalid first item to double "tofu, 93, 18"
     print(double_first(strings));
 }

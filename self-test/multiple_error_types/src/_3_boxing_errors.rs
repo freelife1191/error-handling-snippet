@@ -48,6 +48,7 @@ fn double_first(vec: Vec<&str>) -> CustomResult<i32> {
 
 fn double_test(vec: Vec<&str>) -> Result<i32> {
     let first = vec.first().unwrap();
+    // The first is tofu
     println!("The first is {}", first);
     let second = first.parse::<i32>().map(|i| 2 * i)?;
     Ok(2 * second)
@@ -66,10 +67,14 @@ fn test_double_first() {
     let empty = vec![];
     let strings = vec!["tofu", "93", "18"];
 
+    // The first doubled is 84
     print(double_first(numbers));
+    // Error: invalid first item to double
     print(double_first(empty));
+    // Error: invalid digit found in string
     print(double_first(strings.clone()));
 
     let strings2 = vec!["tofu", "93", "18"];
+    // Error: invalid digit found in string
     print(double_test(strings.clone()));
 }

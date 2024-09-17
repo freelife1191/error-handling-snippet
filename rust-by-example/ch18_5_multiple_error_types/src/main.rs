@@ -27,11 +27,14 @@ fn main() {
     let empty = vec![];
     let strings = vec!["tofu", "93", "18"];
 
+    // The first doubled is 84
     println!("The first doubled is {}", double_first(numbers));
-
+    // called `Option::unwrap()` on a `None` value
+    // println!("The first doubled is {}", double_first(empty));
     println!("The first doubled is {}", double_first(empty));
     // Error 1: the input vector is empty
-
+    // thread 'main' panicked at src/main.rs:10:30:
+    // called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
     println!("The first doubled is {}", double_first(strings));
     // Error 2: the element doesn't parse to a number
 }

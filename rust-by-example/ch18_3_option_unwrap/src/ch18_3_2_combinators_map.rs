@@ -61,7 +61,10 @@ fn main() {
     // 이제 더 간단해 보이는 `process()`를 시도해 보겠습니다.
     let cooked_potato = process(potato);
 
+    // Mmm. I love Cooked(Apple)
     eat(cooked_apple);
+    // Mmm. I love Cooked(Carrot)
     eat(cooked_carrot);
+    // Oh no! It wasn't edible.
     eat(cooked_potato);
 }

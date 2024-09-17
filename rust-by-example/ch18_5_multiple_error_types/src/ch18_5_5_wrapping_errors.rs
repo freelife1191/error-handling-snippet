@@ -83,8 +83,13 @@ mod tests {
         let empty = vec![];
         let strings = vec!["tofu", "93", "18"];
 
+        // The first doubled is 84
         print(double_first(numbers));
+        // Error: please use a vector with at least one element
         print(double_first(empty));
+        // ParseIntError Convert: ParseIntError { kind: InvalidDigit }
+        // Error: the provided string could not be parsed as int
+        //   Caused by: invalid digit found in string
         print(double_first(strings));
     }
 }

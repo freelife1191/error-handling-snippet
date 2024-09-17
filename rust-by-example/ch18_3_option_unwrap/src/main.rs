@@ -16,10 +16,13 @@
 ///
 /// `expect`를 사용하여 `panic`을 수동으로 사용자 정의하는 것이 가능하지만 `unwrap`은 명시적 처리보다 덜 의미 있는 출력을 남깁니다.
 /// 다음 예에서 명시적 처리는 원하는 경우 `패닉` 옵션을 유지하면서 보다 제어된 결과를 산출합니다.
-
+#[allow(unused)]
 mod ch18_3_1_unpacking_options_with;
+#[allow(unused)]
 mod ch18_3_3_combinators_and_then;
+#[allow(unused)]
 mod ch18_3_4_defaults_or_get;
+#[allow(unused)]
 mod ch18_3_2_combinators_map;
 
 // 어른은 모든 것을 보았고 어떤 '음료'도 잘 다룰 수 있습니다.
@@ -48,13 +51,19 @@ fn main() {
     let lemonade = Some("lemonade");
     let void  = None;
 
+    // water? How nice.
     give_adult(water);
+    // Yuck! Too sugary.
     give_adult(lemonade);
+    // No drink? Oh well.
     give_adult(void);
 
     let coffee = Some("coffee");
     let nothing = None;
 
+    // I love coffees!!!!!
     drink(coffee);
+    // thread 'option_unwrap_test::test_drink' panicked at src/main.rs:36:28:
+    // called `Option::unwrap()` on a `None` value
     drink(nothing);
 }

@@ -10,8 +10,8 @@
 use std::num::ParseIntError;
 
 fn multiply(first_number_str: &str, second_number_str: &str) -> Result<i32, ParseIntError> {
-    let first_number = try!(first_number_str.parse::<i32>());
-    let second_number = try!(second_number_str.parse::<i32>());
+    let first_number = r#try!(first_number_str.parse::<i32>());
+    let second_number = r#try!(second_number_str.parse::<i32>());
 
     Ok(first_number * second_number)
 }
@@ -29,7 +29,9 @@ mod tests {
 
     #[test]
     fn test_multiply() {
+        // n is 20
         print(multiply("10", "2"));
+        // Error: invalid digit found in string
         print(multiply("t", "2"));
     }
 }

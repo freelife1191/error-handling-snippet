@@ -23,11 +23,14 @@ fn print(result: Result<i32, ParseIntError>) {
 #[allow(unused)]
 fn test_multiply() {
     let twenty = multiply("10", "2");
+    // n is 20
     print(twenty);
 
     let tt = multiply("t", "2");
+    // error Err(ParseIntError { kind: InvalidDigit })
     println!("error {:?}", tt);
     // print(tt);
 
+    // result Err(ParseIntError { kind: InvalidDigit })
     print!("result {:?}", result_test("t"));
 }

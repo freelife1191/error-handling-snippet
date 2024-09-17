@@ -7,9 +7,6 @@
 ///
 /// 다음 예에서 `cookable_v3()`의 결과는 `Option<Food>`입니다.
 /// `and_then()` 대신 `map()`을 사용하면 `eat()`에 유효하지 않은 유형인 `Option<Option<Food>>`이 제공됩니다.
-
-#![allow(dead_code)]
-
 #[derive(Debug)] enum Food { CordonBleu, Steak, Sushi }
 #[derive(Debug)] enum Day { Monday, Tuesday, Wednesday }
 
@@ -59,7 +56,10 @@ fn eat(food: Food, day: Day) {
 fn main() {
     let (cordon_bleu, steak, sushi) = (Food::CordonBleu, Food::Steak, Food::Sushi);
 
+    // Oh no. We don't get to eat on Monday?
     eat(cordon_bleu, Day::Monday);
+    // Yay! On Tuesday we get to eat Steak.
     eat(steak, Day::Tuesday);
+    // Oh no. We don't get to eat on Wednesday?
     eat(sushi, Day::Wednesday);
 }

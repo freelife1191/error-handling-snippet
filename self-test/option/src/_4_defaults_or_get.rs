@@ -13,7 +13,9 @@ fn test_or() {
     let first_available_fruit = no_fruit.or(orange).or(apple);
     // and 는 모두 true 일때 가장 마지막 값 반환 None 이 있으면 None 반환
     let all_available_fruit = apple.and(no_fruit).and(orange);
+    // first_available_fruit: Some(Orange)
     println!("first_available_fruit: {:?}", first_available_fruit);
+    // all_available_fruit: None
     println!("all_available_fruit: {:?}", all_available_fruit);
 }
 
@@ -37,6 +39,7 @@ fn test_or_else() {
         .or_else(orange)
         .or_else(get_kiwi_as_fallback)
         .or_else(get_lemon_as_fallback);
+    // first_available_fruit: Some(Orange)
     println!("first_available_fruit: {:?}", first_available_fruit);
 }
 
@@ -49,9 +52,11 @@ fn test_get_or_insert() {
     let mut no_fruit: Option<Fruit> = None;
     // fruit 가 Apple 이므로 None 이 아니라서 Applie 를 그대로 반환
     let apple = fruit.get_or_insert(Fruit::Lemon);
+    // apple: Apple
     println!("apple: {:?}", apple);
     // no_fruit 가 None 이므로 Orange 를 대체값으로 넣어준다.
     let orange = no_fruit.get_or_insert(Fruit::Orange);
+    // orange: Orange
     println!("orange: {:?}", orange);
 }
 

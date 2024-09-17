@@ -63,8 +63,11 @@ mod tests {
         let empty = vec![];
         let strings = vec!["tofu", "93", "18"];
 
+        // The first doubled is 84
         print(double_first(numbers));
+        // Error: invalid first item to double
         print(double_first(empty));
+        // Error: invalid digit found in string
         print(double_first(strings));
     }
 }

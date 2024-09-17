@@ -1,7 +1,13 @@
+#[allow(unused)]
 mod ch18_4_1_map_for_result_1;
+#[allow(unused)]
 mod ch18_4_2_aliases_for_result;
+#[allow(unused)]
 mod ch18_4_3_early_returns;
+#[allow(unused)]
 mod ch18_4_4_introducing_1;
+mod ch18_4_1_map_for_result_2;
+mod ch18_4_4_introducing_2;
 
 /// Result
 /// `Result`는 가능한 부재 대신 가능한 오류를 설명하는 `Option` 유형의 더욱 풍부한 버전입니다.
@@ -31,10 +37,14 @@ fn multiply(first_number_str: &str, second_number_str: &str) -> i32 {
 /// 또한 `panic`은 프로그램을 종료하고 불쾌한 오류 메시지를 제공합니다.
 ///
 /// 오류 메시지의 품질을 향상하려면 반환 유형을 보다 구체적으로 지정하고 오류를 명시적으로 처리하는 것을 고려해야 합니다.
+/// thread 'main' panicked at src/main.rs:29:56:
+/// called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
 fn main() {
     let twenty = multiply("10", "2");
+    // double is 20
     println!("double is {}", twenty);
-
+    // thread 'main' panicked at src/main.rs:9:56:
+    // called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }
     let tt = multiply("t", "2");
     println!("double is {}", tt);
 }
@@ -63,6 +73,7 @@ mod tests {
             Ok(number)  => number,
             Err(e) => return Err(e),
         };
+        // 10
         println!("{}", number);
         Ok(())
     }

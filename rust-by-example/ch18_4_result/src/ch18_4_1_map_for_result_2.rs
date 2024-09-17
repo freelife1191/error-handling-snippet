@@ -27,10 +27,12 @@ mod tests {
     fn test_multiply() {
         // 이것은 여전히 합리적인 답변을 제시합니다.
         let twenty = multiply("10", "2");
+        // n is 20
         print(twenty);
 
         // 이제 다음은 훨씬 더 유용한 오류 메시지를 제공합니다.
         let tt = multiply("t", "2");
+        // Error: invalid digit found in string
         print(tt);
     }
 }

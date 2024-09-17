@@ -5,7 +5,7 @@
 
 fn have_ingredients(food: Food) -> Option<Food> {
     match food {
-        Food::Sushi => Some(food),
+        Food::Sushi => None,
         _           => Some(food),
     }
 }
@@ -60,13 +60,16 @@ fn eat_v1(food: Food, day: Day) {
 fn test_cookable_v1() {
 
     let (cordon_bleu, steak, sushi) = (Food::CordonBleu, Food::Steak, Food::Sushi);
-    // eat(cordon_bleu, Day::Monday);
-    // eat(steak, Day::Tuesday);
-    // eat(sushi, Day::Wednesday);
+    // Oh no. We don't get to eat on Monday?
+    eat(cordon_bleu, Day::Monday);
+    // Yay! On Tuesday we get to eat Steak.
+    eat(steak, Day::Tuesday);
+    // Oh no. We don't get to eat on Wednesday?
+    eat(sushi, Day::Wednesday);
 
-    eat_v2(cordon_bleu, Day::Monday);
-    eat_v2(steak, Day::Tuesday);
-    eat_v2(sushi, Day::Wednesday);
+    // eat_v2(cordon_bleu, Day::Monday);
+    // eat_v2(steak, Day::Tuesday);
+    // eat_v2(sushi, Day::Wednesday);
 
     // eat_v1(cordon_bleu, Day::Monday);
     // eat_v1(steak, Day::Tuesday);

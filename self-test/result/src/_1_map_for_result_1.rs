@@ -23,6 +23,8 @@ fn print(result: Result<i32, ParseIntError>) {
 
 #[test]
 fn test_multiply() {
+    // n is 20
     print(multiply("10", "2"));
+    // Error: invalid digit found in string
     print(multiply("t", "2"));
 }

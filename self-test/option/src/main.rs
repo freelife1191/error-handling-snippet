@@ -24,8 +24,11 @@ mod option_unwrap_test {
         let lemonade = Some("lemonade");
         let void  = None;
 
+        // water? How nice.
         give_adult(water);
+        // Yuck! Too sugary.
         give_adult(lemonade);
+        // No drink? Oh well.
         give_adult(void);
     }
 
@@ -42,7 +45,10 @@ mod option_unwrap_test {
         let coffee = Some("coffee");
         let nothing = None;
 
+        // I love coffees!!!!!
         drink(coffee);
+        // thread 'option_unwrap_test::test_drink' panicked at src/main.rs:36:28:
+        // called `Option::unwrap()` on a `None` value
         drink(nothing);
     }
 }

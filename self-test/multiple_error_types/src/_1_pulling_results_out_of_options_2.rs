@@ -16,7 +16,10 @@ fn test_double_first() {
     let empty = vec![];
     let strings = vec!["tofu", "93", "18"];
 
+    // The first doubled is Ok(Some(84))
     println!("The first doubled is {:?}", double_first(numbers));
+    // The first doubled is Ok(None)
     println!("The first doubled is {:?}", double_first(empty));
+    // The first doubled is Err(ParseIntError { kind: InvalidDigit })
     println!("The first doubled is {:?}", double_first(strings));
 }
